@@ -70,8 +70,13 @@ SCHEMA_FILE_POSTGRES = _SQL_ROOT / "schema_postgres.sql"
 def translate_placeholders(sql: str) -> str:
     """把 ``?`` 占位符翻译成 psycopg 需要的 ``%s``。
 
-    转换时会跳过字符串字面量与双引号标识符，并把字面量中的 ``%`` 转义为 ``%%``，
-    因此 ``LIKE '%a?b%'`` 这类内容不会被误改。
+    转换规则：
+
+    * 字符串字面量（``'...'`` / ``"..."``）里的 ``?`` **不翻译**，
+      它只是普通文本；但字面量里的 ``%`` 仍然要转义成 ``%%``，
+      因为 psycopg 是在**整个 SQL 文本**上做参数格式化的；
+    * 字面量外的 ``?`` 一律翻译成 ``%s``；
+    * 其余位置的 ``%`` 一律转义为 ``%%``。
 
     Args:
         sql: 使用 ``?`` 占位符的 SQL 语句。
@@ -91,15 +96,17 @@ def translate_placeholders(sql: str) -> str:
             index += 1
             while index < length:
                 current = sql[index]
-                output.append(current)
                 if current == quote:
                     # 连续两个引号是转义，仍属于字面量内部
                     if index + 1 < length and sql[index + 1] == quote:
-                        output.append(sql[index + 1])
+                        output.append(quote)
+                        output.append(quote)
                         index += 2
                         continue
+                    output.append(quote)
                     index += 1
                     break
+                output.append("%%" if current == "%" else current)
                 index += 1
             continue
 
