@@ -1,0 +1,17 @@
+# ---------------------------------------------------------------------------
+# 后端运行依赖（本地开发 / 课程演示）
+#
+# 刻意只保留一个第三方依赖：Flask。
+# 数据库使用 Python 标准库自带的 sqlite3，不需要额外安装任何东西。
+#
+#   pip install -r requirements.txt
+#
+# 如果要连 PostgreSQL（例如永久部署到云平台），再额外安装：
+#
+#   pip install -r requirements-postgres.txt
+#
+# 云平台部署（含 gunicorn）：
+#
+#   pip install -r requirements-deploy.txt
+# ---------------------------------------------------------------------------
+Flask==3.1.3

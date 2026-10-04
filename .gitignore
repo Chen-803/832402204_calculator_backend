@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+
+# 虚拟环境
+.venv/
+venv/
+env/
+
+# 数据库文件（运行时自动生成，不入库）
+data/*.db
+data/*.db-wal
+data/*.db-shm
+
+# 测试临时目录
+.tmp-tests/
+
+# 编辑器 / 系统文件
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# 日志
+*.log

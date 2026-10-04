@@ -1,0 +1,13 @@
+# ---------------------------------------------------------------------------
+# 云平台部署依赖（一次性装齐）
+#
+#   pip install -r requirements-deploy.txt
+#
+# 包含：
+#   * Flask            —— Web 框架
+#   * psycopg[binary]  —— PostgreSQL 驱动（线上数据库）
+#   * gunicorn         —— 生产级 WSGI 服务器（Windows 上不会用到）
+# ---------------------------------------------------------------------------
+-r requirements.txt
+-r requirements-postgres.txt
+gunicorn>=23,<24

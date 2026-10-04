@@ -1,0 +1,35 @@
+# ---------------------------------------------------------------------------
+# Render 蓝图（Infrastructure as Code）
+#
+# 用法：Render 控制台 -> New -> Blueprint -> 选中本仓库 -> Apply
+#       它会把下面这些配置一次性建好，只需要再填一个 DATABASE_URL。
+#
+# 为什么需要外部数据库：Render 免费实例的文件系统是临时的，
+# 每次重新部署/重启都会清空，SQLite 文件会随之丢失。
+# 因此线上把历史记录放到外部托管的 PostgreSQL（Neon 免费版）里，
+# 由 src/model/database.py 自动识别 DATABASE_URL 并切换驱动。
+# ---------------------------------------------------------------------------
+services:
+  - type: web
+    name: calculator-backend-832402204
+    runtime: python
+    plan: free
+    branch: main
+    autoDeploy: true
+    buildCommand: pip install -r requirements-deploy.txt
+    # $PORT 由 Render 注入
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --threads 4 --timeout 60 --access-logfile - --error-logfile -
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.6"
+      - key: CALC_HOST
+        value: "0.0.0.0"
+      # 前端在 GitHub Pages 上，属于跨域来源；如需收紧可改成具体域名，
+      # 例如 https://chen-803.github.io
+      - key: CALC_ALLOWED_ORIGIN
+        value: "*"
+      # 在 Render 控制台手动粘贴 Neon 的连接串（形如
+      # postgresql://user:pass@ep-xxx.aws.neon.tech/neondb?sslmode=require）
+      - key: DATABASE_URL
+        sync: false

@@ -1,0 +1,12 @@
+# 统一使用 LF 换行，避免 Windows 检出时被转成 CRLF
+# （部署目标多为 Linux 容器，Dockerfile / YAML / Shell 对换行敏感）
+* text=auto eol=lf
+
+# 二进制文件不做换行转换
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.db binary
