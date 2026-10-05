@@ -1,0 +1,18 @@
+﻿# 统一换行符：仓库内一律使用 LF，检出到 Windows 时也保持 LF，
+# 避免在不同操作系统上协同时产生整文件级的 diff 噪声。
+* text=auto eol=lf
+
+# 明确按二进制处理，不做换行转换
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.db   binary
+
+# 让 GitHub 正确识别语言与文档
+*.py   text diff=python
+*.md   text
+*.json text
+*.yml  text
+*.yaml text
