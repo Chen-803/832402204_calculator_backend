@@ -15,9 +15,9 @@
 
 | 项目 | 地址 |
 | --- | --- |
-| 后端接口文档（Swagger，可在线调试） | https://asset-mountains-roger-handbags.trycloudflare.com/docs |
-| 后端 API 根地址 | https://asset-mountains-roger-handbags.trycloudflare.com/api |
-| 前端页面 | https://london-click-extended-lewis.trycloudflare.com |
+| 后端接口文档（Swagger，可在线调试） | https://pic-privacy-merit-detailed.trycloudflare.com/docs |
+| 后端 API 根地址 | https://pic-privacy-merit-detailed.trycloudflare.com/api |
+| 前端页面 | https://anniversary-maternity-tropical-weblog.trycloudflare.com |
 
 > 该地址通过 Cloudflare 快速隧道把本机服务映射到公网，**需要本机保持开机联网**；
 > 隧道域名是临时的，重启后会变化。
