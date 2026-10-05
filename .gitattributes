@@ -1,4 +1,4 @@
-﻿# 统一换行符：仓库内一律使用 LF，检出到 Windows 时也保持 LF，
+# 统一换行符：仓库内一律使用 LF，检出到 Windows 时也保持 LF，
 # 避免在不同操作系统上协同时产生整文件级的 diff 噪声。
 * text=auto eol=lf
 

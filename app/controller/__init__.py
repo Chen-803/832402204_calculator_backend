@@ -1,4 +1,4 @@
-﻿"""接口层：把 HTTP 请求翻译成 Service 调用，并把结果包装成统一信封。"""
+"""接口层：把 HTTP 请求翻译成 Service 调用，并把结果包装成统一信封。"""
 
 from . import (
     calculation_controller,
